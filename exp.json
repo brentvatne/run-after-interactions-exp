@@ -1,6 +1,6 @@
 {
   "name": "run-after-interactions-exp",
-  "description": "An empty new project",
+  "description": "Delay performing expensive operations during animations with InteractionManager.runAfterInteractions",
   "slug": "run-after-interactions-exp",
   "sdkVersion": "11.0.0",
   "version": "1.0.0",

@@ -1,10 +1,9 @@
 /**
  * A trivial example of a React Native application
  */
-var React = require('react-native');
-
-var {
-  AppRegistry,
+import Exponent from 'exponent';
+import React from 'react';
+import {
   Image,
   ScrollView,
   StyleSheet,
@@ -13,11 +12,12 @@ var {
   Navigator,
   TouchableOpacity,
   InteractionManager,
-} = React;
+} from 'react-native';
 
 function doExpensiveOperation() {
-  for (i = 0; i < Math.pow(2, 23); i++) {
-    i * i;
+  let str = '';
+  for (i = 0; i < Math.pow(2, 22); i++) {
+    i = str + i;
   }
 }
 
@@ -27,10 +27,10 @@ class ExpensiveScene extends React.Component {
     // setting timeout so this happens in the middle of the
     // transition, if we do this at the start, it will not even
     // begin doing the transition. both are very bad.
-    setTimeout(doExpensiveOperation, 150);
+    setTimeout(doExpensiveOperation, 50);
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: 'white'}]}>
         <Text>Expensive!</Text>
       </View>
     )
@@ -70,7 +70,7 @@ class DeferredExpensiveScene extends React.Component {
     doExpensiveOperation();
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: 'white'}]}>
         <Text>Deferred expensive!</Text>
       </View>
     )
@@ -149,4 +149,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('main', () => ExampleApp);
+Exponent.registerRootComponent(ExampleApp);

@@ -1,11 +1,14 @@
 {
-  "name": "run-after-interactions-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "name": "run-after-interactions-exp",
+  "version": "0.0.0",
+  "description": "Hello Exponent!",
+  "author": "exponent.team@gmail.com",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "exponent": "~11.0.2",
+    "@exponent/vector-icons": "~2.0.3",
+    "react": "~15.3.2",
+    "react-native": "git+https://github.com/exponentjs/react-native#sdk-11.0.3"
+  }
 }

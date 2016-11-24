@@ -1,2 +1,1 @@
-Check it out on [Exponent](http://exp.host):
-exp://exp.host/@brentvatne/run-after-interactions-example
+[Try it out](https://getexponent.com/@community/run-after-interactions-exp)

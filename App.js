@@ -1,18 +1,17 @@
-/**
+/*
  * A trivial example of a React Native application
- */
-import Exponent from 'exponent';
+*/
 import React from 'react';
-import {
+import { 
   Image,
   ScrollView,
   StyleSheet,
   Text,
   View,
-  Navigator,
   TouchableOpacity,
-  InteractionManager,
+  InteractionManager
 } from 'react-native';
+import NavigationExperimental from 'react-native-deprecated-custom-components';
 
 function doExpensiveOperation() {
   let str = '';
@@ -24,6 +23,7 @@ function doExpensiveOperation() {
 class ExpensiveScene extends React.Component {
 
   render() {
+    console.log('expensive props:', this.props);
     // setting timeout so this happens in the middle of the
     // transition, if we do this at the start, it will not even
     // begin doing the transition. both are very bad.
@@ -32,6 +32,11 @@ class ExpensiveScene extends React.Component {
     return (
       <View style={[styles.container, {backgroundColor: 'white'}]}>
         <Text>Expensive!</Text>
+        <TouchableOpacity
+          style={{padding: 20, backgroundColor: '#000'}}
+          onPress={() => this.props.navigator.pop() }>
+          <Text style={{color: '#fff'}}>Back</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -46,6 +51,7 @@ class DeferredExpensiveScene extends React.Component {
     this.state = {
       isReady: false
     }
+    console.log('props:', props);
   }
 
   componentDidMount() {
@@ -72,6 +78,11 @@ class DeferredExpensiveScene extends React.Component {
     return (
       <View style={[styles.container, {backgroundColor: 'white'}]}>
         <Text>Deferred expensive!</Text>
+        <TouchableOpacity
+          style={{padding: 20, backgroundColor: '#000'}}
+          onPress={() => this.props.navigator.pop() }>
+          <Text style={{color: '#fff'}}>Back</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -95,11 +106,9 @@ var NavigationBarRouteMapper = {
       </Text>
     );
   },
-
 };
 
 class MainScreen extends React.Component {
-
   render() {
     return (
       <View style={styles.container}>
@@ -117,15 +126,14 @@ class MainScreen extends React.Component {
       </View>
     )
   }
+};
 
-}
-
-class ExampleApp extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
-      <Navigator
+      <NavigationExperimental.Navigator
         navigationBar={
-          <Navigator.NavigationBar
+          <NavigationExperimental.Navigator.NavigationBar key='i'
             routeMapper={NavigationBarRouteMapper} />
         }
         renderScene={(route, navigator) => {
@@ -136,9 +144,9 @@ class ExampleApp extends React.Component {
         initialRoute={{component: MainScreen, title: 'Main'}} />
     );
   }
-}
+};
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -148,5 +156,3 @@ var styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
-
-Exponent.registerRootComponent(ExampleApp);
